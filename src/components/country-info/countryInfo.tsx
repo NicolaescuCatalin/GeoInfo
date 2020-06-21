@@ -50,7 +50,7 @@ const CountryInfo = (props: CountryInfoProps) => {
           <b>Native name:</b>
           <div>{native}</div>
           <b>Phone code:</b>
-          <div>{phone}</div>
+          <div>+{phone}</div>
           <b>Capital:</b>
           <div>{capital}</div>
           <b>Currency:</b>

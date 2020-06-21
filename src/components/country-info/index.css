@@ -5,10 +5,3 @@
   column-gap: 70px;
   padding: 30px;
 }
-.grid1 {
-  display: grid;
-  grid-template-columns: auto;
-  row-gap: 10px;
-  column-gap: 70px;
-  padding: 30px;
-}

@@ -39101,7 +39101,79 @@ var HttpLink = function (_super) {
 }(_apolloLink.ApolloLink);
 
 exports.HttpLink = HttpLink;
-},{"tslib":"../node_modules/tslib/tslib.es6.js","apollo-link":"../node_modules/apollo-link/lib/bundle.esm.js","apollo-link-http-common":"../node_modules/apollo-link-http-common/lib/bundle.esm.js"}],"../node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
+},{"tslib":"../node_modules/tslib/tslib.es6.js","apollo-link":"../node_modules/apollo-link/lib/bundle.esm.js","apollo-link-http-common":"../node_modules/apollo-link-http-common/lib/bundle.esm.js"}],"../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel/src/builtins/bundle-url.js"}],"index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"../node_modules/react-is/cjs/react-is.development.js":[function(require,module,exports) {
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -78116,8 +78188,10 @@ var grommet_1 = require("grommet");
 
 var MyHeader = function MyHeader() {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(grommet_1.Header, {
-    background: "#b3cfff"
-  }, /*#__PURE__*/React.createElement(grommet_1.Button, {
+    className: "container",
+    background: "#b3cfff",
+    width: "100%"
+  }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(grommet_1.Button, {
     href: "/",
     icon: /*#__PURE__*/React.createElement(grommet_1.Image, {
       src: "https://i.imgur.com/GMfy6kG.png",
@@ -78125,7 +78199,7 @@ var MyHeader = function MyHeader() {
       height: 50
     }),
     hoverIndicator: true
-  }), /*#__PURE__*/React.createElement(grommet_1.Text, {
+  })), /*#__PURE__*/React.createElement(grommet_1.Text, {
     weight: "bold",
     size: "large"
   }, "Study with us"), /*#__PURE__*/React.createElement(grommet_1.Button, {
@@ -81102,55 +81176,7 @@ if ("development" !== "production") {
     style: _propTypes.default.object
   });
 }
-},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"components/all-countries/allCountries.tsx":[function(require,module,exports) {
-"use strict";
-
-var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  Object.defineProperty(o, k2, {
-    enumerable: true,
-    get: function get() {
-      return m[k];
-    }
-  });
-} : function (o, m, k, k2) {
-  if (k2 === undefined) k2 = k;
-  o[k2] = m[k];
-});
-
-var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
-  Object.defineProperty(o, "default", {
-    enumerable: true,
-    value: v
-  });
-} : function (o, v) {
-  o["default"] = v;
-});
-
-var __importStar = this && this.__importStar || function (mod) {
-  if (mod && mod.__esModule) return mod;
-  var result = {};
-  if (mod != null) for (var k in mod) {
-    if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-  }
-
-  __setModuleDefault(result, mod);
-
-  return result;
-};
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var React = __importStar(require("react"));
-
-var AllCountries = function AllCountries() {
-  return /*#__PURE__*/React.createElement("div", null, "AllCountries");
-};
-
-exports.default = AllCountries;
-},{"react":"../node_modules/react/index.js"}],"../node_modules/graphql/jsutils/devAssert.js":[function(require,module,exports) {
+},{"react-router":"../node_modules/react-router/esm/react-router.js","@babel/runtime/helpers/esm/inheritsLoose":"../node_modules/@babel/runtime/helpers/esm/inheritsLoose.js","react":"../node_modules/react/index.js","history":"../node_modules/history/esm/history.js","prop-types":"../node_modules/prop-types/index.js","tiny-warning":"../node_modules/tiny-warning/dist/tiny-warning.esm.js","@babel/runtime/helpers/esm/extends":"../node_modules/@babel/runtime/helpers/esm/extends.js","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"../node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js","tiny-invariant":"../node_modules/tiny-invariant/dist/tiny-invariant.esm.js"}],"../node_modules/graphql/jsutils/devAssert.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -84386,7 +84412,193 @@ gql.disableExperimentalFragmentVariables = disableExperimentalFragmentVariables;
 
 module.exports = gql;
 
-},{"graphql/language/parser":"../node_modules/graphql/language/parser.js"}],"components/continents/__graphql__/continents.ts":[function(require,module,exports) {
+},{"graphql/language/parser":"../node_modules/graphql/language/parser.js"}],"components/all-countries/__graphql__/allCountries.ts":[function(require,module,exports) {
+"use strict";
+
+var __makeTemplateObject = this && this.__makeTemplateObject || function (cooked, raw) {
+  if (Object.defineProperty) {
+    Object.defineProperty(cooked, "raw", {
+      value: raw
+    });
+  } else {
+    cooked.raw = raw;
+  }
+
+  return cooked;
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.useAllCountriesLazyQuery = exports.useAllCountriesQuery = exports.AllCountriesDocument = void 0;
+
+var graphql_tag_1 = __importDefault(require("graphql-tag"));
+
+var ApolloReactHooks = __importStar(require("@apollo/react-hooks"));
+
+exports.AllCountriesDocument = graphql_tag_1.default(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  query AllCountries {\n    countries {\n      name\n      code\n    }\n  }\n"], ["\n  query AllCountries {\n    countries {\n      name\n      code\n    }\n  }\n"])));
+/**
+ * __useAllCountriesQuery__
+ *
+ * To run a query within a React component, call `useAllCountriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllCountriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllCountriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+
+function useAllCountriesQuery(baseOptions) {
+  return ApolloReactHooks.useQuery(exports.AllCountriesDocument, baseOptions);
+}
+
+exports.useAllCountriesQuery = useAllCountriesQuery;
+
+function useAllCountriesLazyQuery(baseOptions) {
+  return ApolloReactHooks.useLazyQuery(exports.AllCountriesDocument, baseOptions);
+}
+
+exports.useAllCountriesLazyQuery = useAllCountriesLazyQuery;
+var templateObject_1;
+},{"graphql-tag":"../node_modules/graphql-tag/src/index.js","@apollo/react-hooks":"../node_modules/@apollo/react-hooks/lib/react-hooks.esm.js"}],"components/all-countries/index.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js"}],"components/all-countries/allCountries.tsx":[function(require,module,exports) {
+"use strict";
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var React = __importStar(require("react"));
+
+var allCountries_1 = require("./__graphql__/allCountries");
+
+var grommet_1 = require("grommet");
+
+require("./index.css");
+
+var AllCountries = function AllCountries() {
+  var _a = React.useState(""),
+      search = _a[0],
+      setSearch = _a[1];
+
+  var _b = allCountries_1.useAllCountriesQuery(),
+      loading = _b.loading,
+      error = _b.error,
+      data = _b.data;
+
+  if (loading) return /*#__PURE__*/React.createElement("div", null, "loading");
+  if (error) return /*#__PURE__*/React.createElement("div", null, "error");
+  var countries = data.countries.filter(function (country) {
+    return country.name.toLowerCase().includes(search.toLocaleLowerCase());
+  }).map(function (_a, index) {
+    var name = _a.name,
+        code = _a.code;
+    return /*#__PURE__*/React.createElement("div", {
+      key: index
+    }, /*#__PURE__*/React.createElement("a", {
+      href: "/country/" + code
+    }, name, " "));
+  });
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: "100%"
+    }
+  }, /*#__PURE__*/React.createElement(grommet_1.TextInput, {
+    placeholder: "Search",
+    value: search,
+    onChange: function onChange(event) {
+      return setSearch(event.target.value);
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    className: "grid3"
+  }, countries));
+};
+
+exports.default = AllCountries;
+},{"react":"../node_modules/react/index.js","./__graphql__/allCountries":"components/all-countries/__graphql__/allCountries.ts","grommet":"../node_modules/grommet/es6/index.js","./index.css":"components/all-countries/index.css"}],"components/continents/__graphql__/continents.ts":[function(require,module,exports) {
 "use strict";
 
 var __makeTemplateObject = this && this.__makeTemplateObject || function (cooked, raw) {
@@ -84526,6 +84738,8 @@ var continents_1 = require("./__graphql__/continents");
 
 var grommet_1 = require("grommet");
 
+require("../../index.css");
+
 var Continents = function Continents() {
   var _a = continents_1.useContinentsQuery(),
       data = _a.data,
@@ -84536,17 +84750,29 @@ var Continents = function Continents() {
   console.log(data);
   if (error) return /*#__PURE__*/React.createElement("div", null, "Error");
   return /*#__PURE__*/React.createElement("div", null, data.continents.map(function (elem) {
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("a", {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "column"
+      }
+    }, /*#__PURE__*/React.createElement("a", {
       href: "/countriesOnContinent/" + elem.code
     }, /*#__PURE__*/React.createElement(grommet_1.Text, {
       color: "#4287f5",
       size: "large"
     }, elem.name)));
-  }));
+  }), " ", /*#__PURE__*/React.createElement("a", {
+    className: "center",
+    href: "/allCountries"
+  }, /*#__PURE__*/React.createElement(grommet_1.Text, {
+    size: "large",
+    color: "blue"
+  }, "All countries")));
 };
 
 exports.default = Continents;
-},{"react":"../node_modules/react/index.js","./__graphql__/continents":"components/continents/__graphql__/continents.ts","grommet":"../node_modules/grommet/es6/index.js"}],"components/countries-on-continent/__graphql__/countriesOnContinent.ts":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./__graphql__/continents":"components/continents/__graphql__/continents.ts","grommet":"../node_modules/grommet/es6/index.js","../../index.css":"index.css"}],"components/countries-on-continent/__graphql__/countriesOnContinent.ts":[function(require,module,exports) {
 "use strict";
 
 var __makeTemplateObject = this && this.__makeTemplateObject || function (cooked, raw) {
@@ -84640,74 +84866,7 @@ function useCountriesOnContinentLazyQuery(baseOptions) {
 
 exports.useCountriesOnContinentLazyQuery = useCountriesOnContinentLazyQuery;
 var templateObject_1;
-},{"graphql-tag":"../node_modules/graphql-tag/src/index.js","@apollo/react-hooks":"../node_modules/@apollo/react-hooks/lib/react-hooks.esm.js"}],"../node_modules/parcel/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel/src/builtins/bundle-url.js"}],"components/countries-on-continent/index.css":[function(require,module,exports) {
+},{"graphql-tag":"../node_modules/graphql-tag/src/index.js","@apollo/react-hooks":"../node_modules/@apollo/react-hooks/lib/react-hooks.esm.js"}],"components/countries-on-continent/index.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -84957,7 +85116,7 @@ var CountryInfo = function CountryInfo(props) {
     size: "30"
   }, /*#__PURE__*/React.createElement("div", {
     className: "grid2"
-  }, /*#__PURE__*/React.createElement("b", null, "Name:"), /*#__PURE__*/React.createElement("div", null, name), /*#__PURE__*/React.createElement("b", null, "Code:"), /*#__PURE__*/React.createElement("div", null, code), /*#__PURE__*/React.createElement("b", null, "Native name:"), /*#__PURE__*/React.createElement("div", null, native), /*#__PURE__*/React.createElement("b", null, "Phone code:"), /*#__PURE__*/React.createElement("div", null, phone), /*#__PURE__*/React.createElement("b", null, "Capital:"), /*#__PURE__*/React.createElement("div", null, capital), /*#__PURE__*/React.createElement("b", null, "Currency:"), /*#__PURE__*/React.createElement("div", null, currency), /*#__PURE__*/React.createElement("b", null, "Languages:"), /*#__PURE__*/React.createElement("div", null, langs.join(",")), stats.length > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "States:"), /*#__PURE__*/React.createElement("div", null, stats.map(function (elem) {
+  }, /*#__PURE__*/React.createElement("b", null, "Name:"), /*#__PURE__*/React.createElement("div", null, name), /*#__PURE__*/React.createElement("b", null, "Code:"), /*#__PURE__*/React.createElement("div", null, code), /*#__PURE__*/React.createElement("b", null, "Native name:"), /*#__PURE__*/React.createElement("div", null, native), /*#__PURE__*/React.createElement("b", null, "Phone code:"), /*#__PURE__*/React.createElement("div", null, "+", phone), /*#__PURE__*/React.createElement("b", null, "Capital:"), /*#__PURE__*/React.createElement("div", null, capital), /*#__PURE__*/React.createElement("b", null, "Currency:"), /*#__PURE__*/React.createElement("div", null, currency), /*#__PURE__*/React.createElement("b", null, "Languages:"), /*#__PURE__*/React.createElement("div", null, langs.join(",")), stats.length > 0 ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", null, "States:"), /*#__PURE__*/React.createElement("div", null, stats.map(function (elem) {
     return /*#__PURE__*/React.createElement("div", null, elem);
   }))) : null)));
 };
@@ -85012,7 +85171,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var React = __importStar(require("react"));
 
-var grommet_1 = require("grommet");
+require("./index.css");
 
 var header_1 = __importDefault(require("./components/header/header"));
 
@@ -85027,8 +85186,10 @@ var countriesOnContinent_1 = __importDefault(require("./components/countries-on-
 var countryInfo_1 = __importDefault(require("./components/country-info/countryInfo"));
 
 var App = function App() {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom_1.BrowserRouter, null, /*#__PURE__*/React.createElement(header_1.default, null), /*#__PURE__*/React.createElement(grommet_1.Main, {
-    align: "center"
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(header_1.default, null), /*#__PURE__*/React.createElement("div", {
+    className: "center"
+  }, /*#__PURE__*/React.createElement(react_router_dom_1.BrowserRouter, null, /*#__PURE__*/React.createElement("div", {
+    className: "container"
   }, /*#__PURE__*/React.createElement(react_router_dom_1.Switch, null, /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
     path: "/allCountries"
   }, /*#__PURE__*/React.createElement(allCountries_1.default, null)), /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
@@ -85039,11 +85200,11 @@ var App = function App() {
     component: countryInfo_1.default
   }), /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
     path: "/"
-  }, /*#__PURE__*/React.createElement(continents_1.default, null))))));
+  }, /*#__PURE__*/React.createElement(continents_1.default, null)))))));
 };
 
 exports.default = App;
-},{"react":"../node_modules/react/index.js","grommet":"../node_modules/grommet/es6/index.js","./components/header/header":"components/header/header.tsx","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/all-countries/allCountries":"components/all-countries/allCountries.tsx","./components/continents/continents":"components/continents/continents.tsx","./components/countries-on-continent/countriesOnContinent":"components/countries-on-continent/countriesOnContinent.tsx","./components/country-info/countryInfo":"components/country-info/countryInfo.tsx"}],"index.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./index.css":"index.css","./components/header/header":"components/header/header.tsx","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/all-countries/allCountries":"components/all-countries/allCountries.tsx","./components/continents/continents":"components/continents/continents.tsx","./components/countries-on-continent/countriesOnContinent":"components/countries-on-continent/countriesOnContinent.tsx","./components/country-info/countryInfo":"components/country-info/countryInfo.tsx"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
@@ -85141,7 +85302,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60682" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49489" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
