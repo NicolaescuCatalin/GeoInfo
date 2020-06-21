@@ -1,0 +1,31 @@
+overwrite: true
+schema: "https://countries.trevorblades.com/"
+documents: "src/**/*.graphql"
+generates:
+  src/graphql/types.d.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    plugins:
+      - add: // tslint:disable
+      - typescript
+      - typescript-resolvers
+    config:
+      enumsAsTypes: true
+  src/:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    preset: near-operation-file
+    presetConfig:
+      extension: .ts
+      folder: __graphql__
+      baseTypesPath: graphql/types.d.ts
+    plugins:
+      - add: // tslint:disable
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHOC: false
+      withHooks: true
+      withComponent: false

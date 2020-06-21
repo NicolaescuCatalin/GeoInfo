@@ -4,9 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "parcel ./src/index.html"
+    "start": "parcel ./src/index.html",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.15.4",
+    "@graphql-codegen/fragment-matcher": "1.15.4",
+    "@graphql-codegen/typescript": "1.15.4",
+    "@graphql-codegen/typescript-document-nodes": "1.15.4",
+    "@graphql-codegen/typescript-graphql-files-modules": "1.15.4",
+    "@graphql-codegen/typescript-operations": "^1.15.4",
+    "@graphql-codegen/typescript-react-apollo": "1.15.4",
     "@types/node": "^14.0.13",
     "@types/react": "^16.9.38",
     "@types/react-dom": "^16.9.8",
@@ -16,13 +24,20 @@
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
+    "@graphql-codegen/add": "^1.15.4",
+    "@graphql-codegen/near-operation-file-preset": "^1.15.4",
+    "@graphql-codegen/typescript-resolvers": "^1.15.4",
     "apollo-cache-inmemory": "^1.6.6",
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
+    "grommet": "^2.14.0",
+    "grommet-icons": "^4.4.0",
+    "prettier": "^2.0.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.1.1"
   }
 }
