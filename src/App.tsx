@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AllCountries from "./components/all-countries/allCountries";
 import Continents from "./components/continents/continents";
 import CountriesOnContinent from "./components/countries-on-continent/countriesOnContinent";
+import CountryInfo from "./components/country-info/countryInfo";
 const App = () => {
   return (
     <div>
@@ -19,6 +20,9 @@ const App = () => {
           </Route>
           <Route path="/countriesOnContinent/:continent">
             <CountriesOnContinent />
+          </Route>
+          <Route path="/country/:ID">
+            <CountryInfo />
           </Route>
         </Switch>
       </Router>

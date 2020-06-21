@@ -81246,6 +81246,54 @@ var CountriesOnContinent = function CountriesOnContinent() {
 };
 
 exports.default = CountriesOnContinent;
+},{"react":"../node_modules/react/index.js"}],"components/country-info/countryInfo.tsx":[function(require,module,exports) {
+"use strict";
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var React = __importStar(require("react"));
+
+var CountryInfo = function CountryInfo() {
+  return /*#__PURE__*/React.createElement("div", null, "CountryInfo");
+};
+
+exports.default = CountryInfo;
 },{"react":"../node_modules/react/index.js"}],"App.tsx":[function(require,module,exports) {
 "use strict";
 
@@ -81305,6 +81353,8 @@ var continents_1 = __importDefault(require("./components/continents/continents")
 
 var countriesOnContinent_1 = __importDefault(require("./components/countries-on-continent/countriesOnContinent"));
 
+var countryInfo_1 = __importDefault(require("./components/country-info/countryInfo"));
+
 var App = function App() {
   return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(react_router_dom_1.BrowserRouter, null, /*#__PURE__*/React.createElement(header_1.default, null), /*#__PURE__*/React.createElement(react_router_dom_1.Switch, null, /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
     path: "/"
@@ -81312,11 +81362,13 @@ var App = function App() {
     path: "/allCountries"
   }, /*#__PURE__*/React.createElement(allCountries_1.default, null)), /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
     path: "/countriesOnContinent/:continent"
-  }, /*#__PURE__*/React.createElement(countriesOnContinent_1.default, null)))));
+  }, /*#__PURE__*/React.createElement(countriesOnContinent_1.default, null)), /*#__PURE__*/React.createElement(react_router_dom_1.Route, {
+    path: "/country/:ID"
+  }, /*#__PURE__*/React.createElement(countryInfo_1.default, null)))));
 };
 
 exports.default = App;
-},{"react":"../node_modules/react/index.js","./components/header/header":"components/header/header.tsx","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/all-countries/allCountries":"components/all-countries/allCountries.tsx","./components/continents/continents":"components/continents/continents.tsx","./components/countries-on-continent/countriesOnContinent":"components/countries-on-continent/countriesOnContinent.tsx"}],"index.tsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./components/header/header":"components/header/header.tsx","react-router-dom":"../node_modules/react-router-dom/esm/react-router-dom.js","./components/all-countries/allCountries":"components/all-countries/allCountries.tsx","./components/continents/continents":"components/continents/continents.tsx","./components/countries-on-continent/countriesOnContinent":"components/countries-on-continent/countriesOnContinent.tsx","./components/country-info/countryInfo":"components/country-info/countryInfo.tsx"}],"index.tsx":[function(require,module,exports) {
 "use strict";
 
 var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {

@@ -1,0 +1,6 @@
+query CountriesOnContinent($continent: String!) {
+  countries(filter: { continent: { eq: $continent } }) {
+    name
+    code
+  }
+}
