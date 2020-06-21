@@ -13,7 +13,7 @@ export type CountryInfoQuery = { __typename?: "Query" } & {
   country?: Types.Maybe<
     { __typename?: "Country" } & Pick<
       Types.Country,
-      "name" | "native" | "phone" | "capital" | "currency" | "emoji"
+      "name" | "code" | "native" | "phone" | "capital" | "currency" | "emoji"
     > & {
         continent: { __typename?: "Continent" } & Pick<Types.Continent, "name">;
         languages: Array<
@@ -28,6 +28,7 @@ export const CountryInfoDocument = gql`
   query CountryInfo($code: ID!) {
     country(code: $code) {
       name
+      code
       native
       phone
       continent {

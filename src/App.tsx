@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Main } from "grommet";
 import Header from "./components/header/header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AllCountries from "./components/all-countries/allCountries";
@@ -11,20 +12,21 @@ const App = () => {
       <Router>
         <Header />
 
-        <Switch>
-          <Route path="/">
-            <Continents />
-          </Route>
-          <Route path="/allCountries">
-            <AllCountries />
-          </Route>
-          <Route path="/countriesOnContinent/:continent">
-            <CountriesOnContinent />
-          </Route>
-          <Route path="/country/:ID">
-            <CountryInfo />
-          </Route>
-        </Switch>
+        <Main align="center">
+          <Switch>
+            <Route path="/allCountries">
+              <AllCountries />
+            </Route>
+            <Route
+              path={`/countriesOnContinent/:continentCode`}
+              component={CountriesOnContinent}
+            ></Route>
+            <Route path="/country/:ID" component={CountryInfo}></Route>
+            <Route path="/">
+              <Continents />
+            </Route>
+          </Switch>
+        </Main>
       </Router>
     </div>
   );

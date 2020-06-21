@@ -1,5 +1,5 @@
-query CountriesOnContinent($continent: String!) {
-  countries(filter: { continent: { eq: $continent } }) {
+query CountriesOnContinent($continentCode: String!) {
+  countries(filter: { continent: { eq: $continentCode } }) {
     name
     code
   }

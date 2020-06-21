@@ -6,7 +6,7 @@ import * as ApolloReactCommon from "@apollo/react-common";
 import * as ApolloReactHooks from "@apollo/react-hooks";
 
 export type CountriesOnContinentQueryVariables = Types.Exact<{
-  continent: Types.Scalars["String"];
+  continentCode: Types.Scalars["String"];
 }>;
 
 export type CountriesOnContinentQuery = { __typename?: "Query" } & {
@@ -16,8 +16,8 @@ export type CountriesOnContinentQuery = { __typename?: "Query" } & {
 };
 
 export const CountriesOnContinentDocument = gql`
-  query CountriesOnContinent($continent: String!) {
-    countries(filter: { continent: { eq: $continent } }) {
+  query CountriesOnContinent($continentCode: String!) {
+    countries(filter: { continent: { eq: $continentCode } }) {
       name
       code
     }
@@ -36,7 +36,7 @@ export const CountriesOnContinentDocument = gql`
  * @example
  * const { data, loading, error } = useCountriesOnContinentQuery({
  *   variables: {
- *      continent: // value for 'continent'
+ *      continentCode: // value for 'continentCode'
  *   },
  * });
  */

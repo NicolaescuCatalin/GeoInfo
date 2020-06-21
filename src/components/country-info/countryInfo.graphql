@@ -1,6 +1,7 @@
 query CountryInfo($code: ID!) {
   country(code: $code) {
     name
+    code
     native
     phone
     continent {
@@ -12,7 +13,6 @@ query CountryInfo($code: ID!) {
       code
       name
     }
-    emoji
     states {
       name
     }
