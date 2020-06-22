@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html --no-cache --no-source-maps --no-autoinstall --out-dir prod-build",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
